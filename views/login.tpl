@@ -34,11 +34,11 @@
                 <div class="col-xs-6">
                     <p class="lead">Register now for <span class="text-success">FREE</span></p>
                     <ul class="list-unstyled" style="line-height: 2">
-                        <li><span class="fa fa-check text-success"></span><b> Primer<span style="color:#d9534f">QC</span></b></li>
-                        <li><span class="fa fa-check text-success"></span><b> CRISPR<span style="color:#d9534f">Design</span></b></li>
-                        <li><span class="fa fa-check text-success"></span><b> sRNA<span style="color:#d9534f">Primer</span></b></li>
-                        <li><span class="fa fa-check text-success"></span><b> Multip<span style="color:#d9534f">Seq</span></b><small> (only for VIP user)</small></li>
-                        <li><span class="fa fa-check text-success"></span><b> Target<span style="color:#d9534f">Seq</span></b><small> (only for VIP user)</small></li>
+                        <li><span class="fa fa-check text-success"></span> CRISPR</li>
+                        <li><span class="fa fa-check text-success"></span> PrimerQC</li>
+                        <li><span class="fa fa-check text-success"></span> sRNAPrimer</li>
+                        <li><span class="fa fa-check text-success"></span> TargetSeq<small> (only for registered user)</small></li>
+                        <li><span class="fa fa-check text-success"></span> MultipSeq<small> (only for registered user)</small></li>
                         <li><a href="/read-more/"><u>Read more</u></a></li>
                     </ul>
                     <p><a href="/new-customer/" class="btn btn-info btn-block">Yes please, register now!</a></p>
