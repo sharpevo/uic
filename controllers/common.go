@@ -4,6 +4,8 @@ import (
 	"crypto/rsa"
 	"errors"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/cache"
+	"github.com/astaxie/beego/utils/captcha"
 	"github.com/astaxie/beego/validation"
 	"github.com/dgrijalva/jwt-go"
 	"io/ioutil"
@@ -34,6 +36,14 @@ type NestPreparer interface {
 }
 
 var PriKey *rsa.PrivateKey
+
+var cpt *captcha.Captcha
+
+func init() {
+	// use beego cache system store the captcha data
+	store := cache.NewMemoryCache()
+	cpt = captcha.NewWithFilter("/captcha/", store)
+}
 
 func (c *BaseController) Prepare() {
 	priBytes, err := ioutil.ReadFile("keys/ip.rsa")
