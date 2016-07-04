@@ -8,6 +8,13 @@ import (
 	"ssologin/mongo"
 )
 
+type UserInfo struct {
+	Id    string
+	Name  string
+	Email string
+	Roles string
+}
+
 type User struct {
 	Id       bson.ObjectId     `json:"id" bson:"_id"`
 	Name     string            `json:"name"`
@@ -70,4 +77,41 @@ func (user *User) Update() (code int, err error) {
 		beego.Error(err)
 	}
 	return ERROR_DATABASE, err
+}
+
+func (user *User) FindById(id string) (code int, err error) {
+	session, err := mongo.CopyMasterSession()
+	if err != nil {
+		return ERROR_DATABASE, err
+	}
+
+	collection := session.DB(mongo.MongoConfig.Database).C("user")
+
+	if !bson.IsObjectIdHex(id) {
+		return ERROR_INPUT, err
+	}
+
+	err = collection.FindId(bson.ObjectIdHex(id)).One(user)
+	if err != nil {
+		return ERROR_NOT_FOUND, err
+	}
+
+	return 0, nil
+}
+
+func (user *User) HasToken(iss string, token string) bool {
+	return user.Tokens[iss] == token
+}
+
+func (user *User) RemoveToken(iss string) bool {
+	delete(user.Tokens, iss)
+	user.Update()
+	_, ok := user.Tokens[iss]
+	return !ok
+}
+
+func (user *User) RemoveAllTokens() error {
+	user.Tokens = map[string]string{}
+	_, err := user.Update()
+	return err
 }
