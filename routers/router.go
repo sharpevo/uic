@@ -13,6 +13,9 @@ func init() {
 		beego.NSRouter(
 			"/login",
 			&controllers.LoginController{}),
+		beego.NSRouter(
+			"/logout",
+			&controllers.LogoutController{}),
 	)
 	beego.AddNamespace(ns)
 }
