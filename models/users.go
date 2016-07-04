@@ -115,3 +115,31 @@ func (user *User) RemoveAllTokens() error {
 	_, err := user.Update()
 	return err
 }
+
+func ParseUser(form *RegisterForm) (u *User, err error) {
+	passwordKey, _ := scrypt.DerivePassphrase(form.Password, 32)
+	user := User{
+		Name:     form.Name,
+		Email:    form.Email,
+		Password: hex.EncodeToString(passwordKey),
+	}
+	return &user, nil
+}
+
+func (user *User) Create() (code int, err error) {
+	user.Id = bson.NewObjectId()
+	session, err := mongo.CopyMasterSession()
+	if err != nil {
+		return ERROR_DATABASE, err
+	}
+	collection := session.DB(mongo.MongoConfig.Database).C("user")
+	count, _ := collection.Find(bson.M{"email": user.Email}).Count()
+	if count != 0 {
+		return ERROR_DUPLICATE, err
+	}
+	err = collection.Insert(user)
+	if err != nil {
+		return ERROR_DATABASE, err
+	}
+	return 0, nil
+}
