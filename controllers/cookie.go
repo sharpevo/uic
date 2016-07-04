@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"net/http"
+	"time"
 )
 
 type CookieController struct {
@@ -18,5 +20,19 @@ func (c *CookieController) Get() {
 	c.Data["ReturnTo"] = returnTo
 	beego.Debug("jwt:", jwt)
 	beego.Debug("return_to", returnTo)
+
+	c.SetCookie(jwt)
+
 	c.TplName = "cookie.tpl"
+}
+
+func (c *CookieController) SetCookie(value string) {
+	if value == "" {
+		beego.Debug("SetCookie:", "Nothing to set.")
+		return
+	}
+	expiration := time.Now().Add(30 * time.Minute)
+	cookie := http.Cookie{Name: "token", Value: value, HttpOnly: true, Domain: ".igenetech.com", Expires: expiration}
+	beego.Debug("SetCookie:", cookie)
+	http.SetCookie(c.Ctx.ResponseWriter, &cookie)
 }
