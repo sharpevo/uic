@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"reflect"
+	"ssologin/models"
 	"time"
 )
 
@@ -100,4 +101,16 @@ func (c *BaseController) GenerateToken(userId string) (tokenString string, err e
 
 func (c *BaseController) AuthFail() {
 	http.Error(c.Ctx.ResponseWriter, "Not logged in", http.StatusUnauthorized)
+}
+
+func (c *BaseController) GetUserInfo() (userInfo models.UserInfo) {
+	userInfo = models.UserInfo{
+		Id:    c.Ctx.Input.Header("Igenetech-User-Id"),
+		Name:  c.Ctx.Input.Header("igenetech-user-name"),
+		Email: c.Ctx.Input.Header("Igenetech-User-Email"),
+		Roles: c.Ctx.Input.Header("Igenetech-User-Roles"),
+	}
+	beego.Debug("GetUserInfo:", userInfo)
+	c.Data["UserInfo"] = userInfo
+	return userInfo
 }
