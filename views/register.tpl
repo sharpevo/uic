@@ -1,7 +1,17 @@
-<div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+
+<div id="login-overlay" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Sign up to iGeneTech.com</h4>
+             <!--<img class="pull-right" style="height: 30px; margin-top: -30px;" src="/static/img/logo.png" alt="iGeneTech Logo" />-->
+        </div>
+        <div class="modal-body">
+
+<!--<div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">-->
     <form role="form" action="{{urlfor "RegisterController.Post"}}" method="POST">
-        <h2>Please Sign Up <small>It's free and always will be.</small></h2>
-        <hr/>
+        <!--<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+        <hr/>-->
         <div class="form-group">
             <input type="text" name="name" id="name" class="form-control" value="{{.Name}}" placeholder="User Name" tabindex="3">
         </div>
@@ -20,7 +30,6 @@
                 </div>
             </div>
         </div>
-        <p>We need to make sure a real person is creating this account.</p> 
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
@@ -28,25 +37,37 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group" style="margin-top:1em;">
+                    <div><small>If you can't read the captcha,</small></div>
+                    <div><small>try another one by clicking on it.</small></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <input name="captcha" type="text" class="form-control" placeholder="Enter the characters you see" tabindex="7" style="margin-top:1em;">
                 </div>
             </div>
         </div>
-        <hr/>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <small>Clicking <strong class="label label-primary">Register</strong> means that you agree to the <a href="#" data-toggle="modal" data-target="#agreement">iGeneTech Services Agreement</a>.</small>
+                    <small>Clicking "Register" button means that you agree to the <a href="#" data-toggle="modal" data-target="#agreement">iGeneTech Services Agreement</a>.</small>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block" tabindex="8"></div>
             <div class="col-xs-12 col-md-6"><a href="{{urlfor "LoginController.Get"}}" class="btn btn-success btn-block">Login</a></div>
+            <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-info btn-block" tabindex="8"></div>
         </div>
     </form>
-</div>
+<!--</div>-->
+
+</div><!-- modal body -->
+</div><!-- modal content -->
+</div><!-- modal dialog -->
+
 <!-- Modal -->
 <div class="modal fade" id="agreement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
     <div class="modal-dialog">
@@ -72,3 +93,4 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
