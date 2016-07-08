@@ -20,6 +20,26 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{urlfor "MainController.Home"}}">Home</a></li>
+
+              {{ if .UserInfo.Id }}
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li><a href="http://accounts.igenetech.com/logout">Logout</a></li>
+                  </ul>
+                </li>
+
+              {{else}}
+
+
+              <li>
+               <a href="{{urlfor "RegisterController.Get"}}">Register</a>
+              </li>
+              <li>
+               <a href="{{urlfor "LoginController.Get"}}">Login</a>
+              </li>
+              {{ end }}
+
                 </ul>
             </div>
         </nav>
