@@ -143,3 +143,30 @@ func (user *User) Create() (code int, err error) {
 	}
 	return 0, nil
 }
+
+func GetUsersSortByEmail() ([]User, error) {
+	session, err := mongo.CopyMasterSession()
+	users := []User{}
+	if err != nil {
+		return users, err
+	}
+	collection := session.DB(mongo.MongoConfig.Database).C("user")
+	iter := collection.Find(nil).Sort("email").Iter()
+	err = iter.All(&users)
+	return users, err
+}
+
+func (user *User) AddRole(roleName string) error {
+	if user.Roles == nil {
+		user.Roles = make(map[string]bool)
+	}
+	user.Roles[roleName] = true
+	_, err := user.Update()
+	return err
+}
+
+func (user *User) RemoveRole(roleName string) error {
+	delete(user.Roles, roleName)
+	_, err := user.Update()
+	return err
+}
