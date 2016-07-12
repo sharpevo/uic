@@ -5,6 +5,7 @@ import (
 	"github.com/agnivade/easy-scrypt"
 	"github.com/astaxie/beego"
 	"gopkg.in/mgo.v2/bson"
+	"time"
 	"uic/mongo"
 )
 
@@ -16,12 +17,16 @@ type UserInfo struct {
 }
 
 type User struct {
-	Id       bson.ObjectId     `json:"id" bson:"_id"`
-	Name     string            `json:"name"`
-	Email    string            `json:"Email"`
-	Password string            `json:"password`
-	Roles    map[string]bool   `json:"roles"`
-	Tokens   map[string]string `json:"-"`
+	Id            bson.ObjectId     `json:"id" bson:"_id"`
+	Name          string            `json:"name"`
+	Email         string            `json:"Email"`
+	Password      string            `json:"password`
+	Roles         map[string]bool   `json:"roles"`
+	Tokens        map[string]string `json:"-"`
+	DateCreated   time.Time
+	DateLastLogin time.Time
+	Enabled       bool
+	Deleted       bool
 }
 
 func (user *User) FindByEmail(email string) (code int, err error) {
@@ -61,6 +66,7 @@ func (user *User) AddToken(iss string, token string) error {
 	}
 
 	user.Tokens[iss] = token
+	user.DateLastLogin = time.Now()
 	_, err := user.Update()
 	return err
 }
@@ -128,6 +134,9 @@ func ParseUser(form *RegisterForm) (u *User, err error) {
 
 func (user *User) Create() (code int, err error) {
 	user.Id = bson.NewObjectId()
+	user.DateCreated = time.Now()
+	user.Enabled = true
+	user.Deleted = false
 	session, err := mongo.CopyMasterSession()
 	if err != nil {
 		return ERROR_DATABASE, err
