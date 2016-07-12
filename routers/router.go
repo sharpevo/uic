@@ -10,7 +10,10 @@ func init() {
 	beego.Router("/cookie", &controllers.CookieController{})
 	beego.Router("/register", &controllers.RegisterController{})
 	beego.Router("/login", &controllers.LoginController{})
+
+	beego.Router("/logout", &controllers.LogoutController{})
 	beego.Router("/roles", &controllers.RoleController{})
+	beego.Router("/profile", &controllers.ProfileController{})
 	ns := beego.NewNamespace(
 		"v1",
 		beego.NSRouter(
