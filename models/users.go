@@ -5,7 +5,7 @@ import (
 	"github.com/agnivade/easy-scrypt"
 	"github.com/astaxie/beego"
 	"gopkg.in/mgo.v2/bson"
-	"ssologin/mongo"
+	"uic/mongo"
 )
 
 type UserInfo struct {

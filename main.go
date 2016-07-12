@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"ssologin/mongo"
-	_ "ssologin/routers"
+	"uic/mongo"
+	_ "uic/routers"
 )
 
 func main() {

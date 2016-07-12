@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"ssologin/models"
+	"uic/models"
 )
 
 type RegisterController struct {

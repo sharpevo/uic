@@ -11,8 +11,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"reflect"
-	"ssologin/models"
 	"time"
+	"uic/models"
 )
 
 type ControllerError struct {

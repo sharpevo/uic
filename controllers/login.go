@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/astaxie/beego"
 	"net/http"
-	"ssologin/models"
+	"uic/models"
 )
 
 type LoginController struct {

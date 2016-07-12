@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"ssologin/controllers"
+	"uic/controllers"
 )
 
 func init() {
