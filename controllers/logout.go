@@ -11,10 +11,8 @@ type LogoutController struct {
 
 func (c *LogoutController) Get() {
 
-	userInfo := c.GetUserInfo()
-
 	user := models.User{}
-	if code, err := user.FindById(userInfo.Id); err != nil {
+	if code, err := user.FindById(c.UserInfo.Id); err != nil {
 		beego.Error("FindUserById:", err)
 		if code == models.ERROR_NOT_FOUND {
 			beego.Error("No such user.")
