@@ -99,12 +99,12 @@ func (c *BaseController) ParseUserAgent() (userAgent string) {
 	return userAgent
 }
 
-func (c *BaseController) GenerateToken(userId string) (tokenString string, err error) {
+func (c *BaseController) GenerateToken(userId string, exp int64) (tokenString string, err error) {
 	token := jwt.NewWithClaims(
 		jwt.SigningMethodRS256,
 		jwt.MapClaims{
 			"sub": userId,
-			"exp": time.Now().Add(time.Minute * 10).Unix(),
+			"exp": time.Now().Add(time.Minute * time.Duration(exp)).Unix(),
 		})
 	tokenString, err = token.SignedString(PriKey)
 	return tokenString, err
