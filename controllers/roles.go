@@ -11,22 +11,6 @@ type RoleController struct {
 }
 
 func (c *RoleController) Get() {
-	//userInfo := c.GetUserInfo()
-
-	if c.UserInfo.Id == "" {
-		beego.Error("Wierd error.")
-		c.Data["ReturnTo"] = "www.igenetech.com"
-		c.TplName = "logout.tpl"
-		c.Layout = "layout.tpl"
-		return
-	}
-	if c.UserInfo.Email != "quwubin@gmail.com" {
-		beego.Debug("IllegalUser:", c.UserInfo.Email)
-		c.Data["ReturnTo"] = "www.igenetech.com"
-		c.TplName = "logout.tpl"
-		c.Layout = "layout.tpl"
-		return
-	}
 	beego.ReadFromRequest(&c.Controller)
 	c.Data["UserList"], _ = models.GetUsersSortByEmail()
 	c.TplName = "roles.tpl"
@@ -34,23 +18,6 @@ func (c *RoleController) Get() {
 }
 
 func (c *RoleController) Post() {
-	//userInfo := c.GetUserInfo()
-
-	if c.UserInfo.Id == "" {
-		beego.Error("Wierd error.")
-		c.Data["ReturnTo"] = "www.igenetech.com"
-		c.TplName = "logout.tpl"
-		c.Layout = "layout.tpl"
-		return
-	}
-	if c.UserInfo.Email != "quwubin@gmail.com" {
-		beego.Debug("IllegalUser:", c.UserInfo.Email)
-		c.Data["ReturnTo"] = "www.igenetech.com"
-		c.TplName = "logout.tpl"
-		c.Layout = "layout.tpl"
-		return
-	}
-
 	flash := beego.NewFlash()
 	userId := c.GetString("userId")
 	roleName := strings.ToLower(
