@@ -45,6 +45,19 @@ func (user *User) FindByEmail(email string) (code int, err error) {
 
 }
 
+func CheckEmail(email string) (existed bool, err error) {
+	session, err := mongo.CopyMasterSession()
+	if err != nil {
+		return true, err
+	}
+	collection := session.DB(mongo.MongoConfig.Database).C("user")
+	count, err := collection.Find(bson.M{"email": email}).Count()
+	if count != 0 {
+		return true, err
+	}
+	return false, err
+}
+
 func (user *User) CheckPass(password string) (ok bool, err error) {
 	passwordKey, err := hex.DecodeString(user.Password)
 	if err != nil {
@@ -130,6 +143,12 @@ func ParseUser(form *RegisterForm) (u *User, err error) {
 		Password: hex.EncodeToString(passwordKey),
 	}
 	return &user, nil
+}
+
+func (user *User) EncryptPassword(password string) (encpasswd string) {
+	passwordKey, _ := scrypt.DerivePassphrase(password, 32)
+	return hex.EncodeToString(passwordKey)
+
 }
 
 func (user *User) Create() (code int, err error) {

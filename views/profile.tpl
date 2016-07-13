@@ -44,11 +44,51 @@
             </div>
         </div>
         <div class="panel-footer">
-            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-envelope"></i></a>
+            <a href="#" data-toggle="modal" data-target="#deleteUser" class="btn btn-sm btn-danger" style="visibility:hidden"><i class="glyphicon glyphicon-remove"></i></a>
             <span class="pull-right">
-                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                 <a href="#" data-toggle="modal" data-target="#editProfile" class="btn btn-sm btn-warning">Edit</a>
             </span>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+            </div>
+            <form role="form" action="{{urlfor "ProfileController.Post"}}" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" class="form-control" value="{{.UserInfo.Name}}" placeholder="User Name" tabindex="3">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control" value="{{.UserInfo.Email}}" placeholder="Email Address" tabindex="4">
+                    </div>
+
+                    <div class="form-group">
+                        <small>Leave the passwords blank if you don't want to change it.</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
