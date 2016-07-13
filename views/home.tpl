@@ -29,7 +29,7 @@
             CRISPR Design
         </h1>
         <h4 id="crisprFeature">
-            A fast and versatile program for designing CRISPR sgRNA and evaluating potential off-target cleavage sites.
+            Probe design for solution hybridization for target sequencing.
         </h4>
     </div>
 
