@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login Portal</title>
+        <title>User Information Center - iGeneTech</title>
 
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
         <link href="/static/css/bootstrap-watch.min.css" rel="stylesheet">
@@ -22,6 +22,11 @@
     <body>
         <nav class="navbar navbar-default nav-fixed-top" role="navigation">
             <div id="navbar" class="navbar-collapse collapse">
+                <a  class="navbar-brand"  rel="home"  href="http://www.igenetech.com"  title="iGeneTech">
+                    <!--<img id="iGeneTechLogo" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/>-->
+                    iGeneTech
+                </a>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{urlfor "HomeController.Get"}}">Home</a></li>
 
@@ -29,11 +34,12 @@
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
+                        <li><a href="http://accounts.igenetech.com/profile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                         {{if hasRole .UserInfo "admin"}}
-                        <li><a href="http://accounts.igenetech.com/roles">roles</a></li>
+                        <li><a href="http://accounts.igenetech.com/roles">Manage Users <span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                        <li class="divider"></li>
                         {{end}}
-                      <li><a href="http://accounts.igenetech.com/profile">profile</a></li>
-                      <li><a href="http://accounts.igenetech.com/logout">Logout</a></li>
+                      <li><a href="http://accounts.igenetech.com/logout">Logout <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                   </ul>
                 </li>
 
@@ -82,7 +88,7 @@
                 <li>
                     <ul class="list-inline">
                         <li>
-                            &copy;2015
+                            &copy;2016
                         </li>
                         <li>
                             艾吉泰康生物科技（北京）有限公司 版权所有
