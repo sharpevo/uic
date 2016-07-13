@@ -19,7 +19,7 @@
         <nav class="navbar navbar-default nav-fixed-top" role="navigation">
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{urlfor "MainController.Home"}}">Home</a></li>
+                    <li><a href="{{urlfor "HomeController.Get"}}">Home</a></li>
 
               {{ if .UserInfo.Id }}
               <li class="dropdown">
