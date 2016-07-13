@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/astaxie/beego"
+	"sso-client/utils/rbac"
 	"time"
 	"uic/mongo"
 	_ "uic/routers"
@@ -22,6 +23,11 @@ func main() {
 	}
 
 	beego.AddFuncMap("Format", FormatDate)
+
+	beego.AddFuncMap("hasRole", rbac.HasRole)
+	rbac.AdminCheck(
+		"/roles",
+	)
 
 	beego.Run()
 
