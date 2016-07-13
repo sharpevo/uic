@@ -90,7 +90,14 @@ func (c *LoginController) Post() {
 		return
 	}
 
-	tokenString, err := c.GenerateToken(user.Id.Hex())
+	// Parse duration
+	remember := c.GetString("remember")
+	duration := int64(30)
+	if remember == "on" {
+		duration = int64(7200)
+	}
+
+	tokenString, err := c.GenerateToken(user.Id.Hex(), duration)
 	if err != nil {
 		beego.Error("GenerateToken:", err)
 		flash.Error("Fail to login")
@@ -128,14 +135,20 @@ func (c *LoginController) Post() {
 		beego.Error(err)
 	}
 	beego.Debug("AddToken:", user)
-	c.Redirect(
-		c.URLFor(
-			"CookieController.Get",
-			"jwt",
-			tokenString,
-			"return_to",
-			c.GetString("return_to")),
-		302)
+
+	// Process cookies
+	returnTo := c.GetString("return_to")
+	if returnTo == "" {
+		returnTo = "accounts.igenetech.com"
+	}
+	c.Data["Token"] = tokenString
+	c.Data["ReturnTo"] = returnTo
+	beego.Debug("return_to", returnTo)
+
+	c.SetCookie(".igenetech.com", tokenString, int64(duration))
+
+	c.TplName = "cookie.tpl"
+
 }
 
 func (c *LoginController) PostAPI() {
@@ -176,7 +189,7 @@ func (c *LoginController) PostAPI() {
 		return
 	}
 
-	tokenString, err := c.GenerateToken(user.Id.Hex())
+	tokenString, err := c.GenerateToken(user.Id.Hex(), 30)
 	if err != nil {
 		beego.Error("GenerateToken:", err)
 		c.Data["json"] = ErrToken

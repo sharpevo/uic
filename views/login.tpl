@@ -22,7 +22,7 @@
                             <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="remember" id="remember"> Remember login
+                                    <input type="checkbox" name="remember" id="remember"> Remember me for 5 days.
                                 </label>
                                 <p class="help-block">(if this is a private computer)</p>
                             </div>
