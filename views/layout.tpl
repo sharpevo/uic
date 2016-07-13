@@ -25,6 +25,10 @@
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
+                        {{if hasRole .UserInfo "admin"}}
+                        <li><a href="http://accounts.igenetech.com/roles">roles</a></li>
+                        {{end}}
+                      <li><a href="http://accounts.igenetech.com/profile">profile</a></li>
                       <li><a href="http://accounts.igenetech.com/logout">Logout</a></li>
                   </ul>
                 </li>
