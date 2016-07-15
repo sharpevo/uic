@@ -77,15 +77,15 @@
                 <h4 class="modal-title" id="myModalLabel">iGeneTech Services Agreement</h4>
             </div>
             <div class="modal-body">
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
-                <p>I WILL NOT PEEP JINGWEI TAKING A BATH</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
+                <p>I WILL NOT BUY ANY KITS OF AGILENT</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
