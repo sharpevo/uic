@@ -32,7 +32,7 @@ func (c *LogoutController) Get() {
 	}
 	beego.Debug("UserLogout:", user.Email)
 	beego.Debug("UserTokens:", user.Tokens)
-	returnTo := "www.igenetech.com"
+	returnTo := "accounts.igenetech.com/login"
 	c.Data["ReturnTo"] = returnTo
 	c.TplName = "logout.tpl"
 	return

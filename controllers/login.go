@@ -139,7 +139,7 @@ func (c *LoginController) Post() {
 	// Process cookies
 	returnTo := c.GetString("return_to")
 	if returnTo == "" {
-		returnTo = "accounts.igenetech.com"
+		returnTo = "accounts.igenetech.com/profile"
 	}
 	c.Data["Token"] = tokenString
 	c.Data["ReturnTo"] = returnTo
