@@ -10,6 +10,8 @@ func init() {
 	beego.Router("/cookie", &controllers.CookieController{})
 	beego.Router("/register", &controllers.RegisterController{})
 	beego.Router("/login", &controllers.LoginController{})
+	beego.Router("/forgot", &controllers.ForgotPasswdController{})
+	beego.Router("/reset", &controllers.ResetPasswdController{})
 
 	beego.Router("/logout", &controllers.LogoutController{})
 	beego.Router("/roles", &controllers.RoleController{})
