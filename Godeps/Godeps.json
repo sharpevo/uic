@@ -1,0 +1,112 @@
+{
+	"ImportPath": "uic",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/go.crypto/scrypt",
+			"Comment": "null-236",
+			"Rev": "'69e2a90ed92d03812364aeb947b7068dc42e561e'"
+		},
+		{
+			"ImportPath": "github.com/agnivade/easy-scrypt",
+			"Rev": "7c78b15ac9c86d8a8420f6bbf1254e19ae63841b"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/cache",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/config",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/context",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/grace",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/logs",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/session",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/toolbox",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/utils",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/utils/captcha",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego/validation",
+			"Comment": "v1.6.1",
+			"Rev": "1aeb3d90512734def678c7aa9f612fe6f659e6b5"
+		},
+		{
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v3.0.0-2-gf077707",
+			"Rev": "f0777076321ab64f6efc15a82d9d23b98539b943"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/pbkdf2",
+			"Rev": "77f4136a99ffb5ecdbdd0226bd5cb146cf56bc0e"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Comment": "r2015.06.03-3-g3569c88",
+			"Rev": "3569c88678d88179dcbd68d02ab081cbca3cd4d0"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/bson",
+			"Comment": "r2015.06.03-3-g3569c88",
+			"Rev": "3569c88678d88179dcbd68d02ab081cbca3cd4d0"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/sasl",
+			"Comment": "r2015.06.03-3-g3569c88",
+			"Rev": "3569c88678d88179dcbd68d02ab081cbca3cd4d0"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/scram",
+			"Comment": "r2015.06.03-3-g3569c88",
+			"Rev": "3569c88678d88179dcbd68d02ab081cbca3cd4d0"
+		},
+		{
+			"ImportPath": "sso-client/controllers/common",
+			"Rev": "108c8057ebc13e39530b28ae7fa914a0aafbcdf1"
+		},
+		{
+			"ImportPath": "sso-client/utils/rbac",
+			"Rev": "108c8057ebc13e39530b28ae7fa914a0aafbcdf1"
+		},
+		{
+			"ImportPath": "sso-client/utils/userinfo",
+			"Rev": "108c8057ebc13e39530b28ae7fa914a0aafbcdf1"
+		}
+	]
+}
