@@ -27,7 +27,7 @@
                                 <p class="help-block">(if this is a private computer)</p>
                             </div>
                             <button type="submit" class="btn btn-success btn-block">Login</button>
-                            <a href="/forgot/" class="btn btn-default btn-block">Help to login</a>
+                            <a href="{{urlfor "ForgotPasswdController.Get"}}" class="btn btn-default btn-block">Help to login</a>
                         </form>
                     </div>
                 </div>
