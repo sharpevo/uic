@@ -3,6 +3,7 @@ package controllers
 import (
 	"crypto/rsa"
 	"errors"
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/cache"
 	"github.com/astaxie/beego/utils/captcha"
@@ -112,4 +113,8 @@ func (c *BaseController) GenerateToken(userId string, exp int64) (tokenString st
 
 func (c *BaseController) AuthFail() {
 	http.Error(c.Ctx.ResponseWriter, "Not logged in", http.StatusUnauthorized)
+}
+
+func (c *BaseController) BuildLink(path string) string {
+	return fmt.Sprintf("%v:%v%v", c.Ctx.Input.Site(), c.Ctx.Input.Port(), path)
 }
