@@ -17,16 +17,17 @@ type UserInfo struct {
 }
 
 type User struct {
-	Id            bson.ObjectId     `json:"id" bson:"_id"`
-	Name          string            `json:"name"`
-	Email         string            `json:"Email"`
-	Password      string            `json:"password`
-	Roles         map[string]bool   `json:"roles"`
-	Tokens        map[string]string `json:"-"`
-	DateCreated   time.Time
-	DateLastLogin time.Time
-	Enabled       bool
-	Deleted       bool
+	Id              bson.ObjectId     `json:"id" bson:"_id"`
+	Name            string            `json:"name"`
+	Email           string            `json:"Email"`
+	Password        string            `json:"password`
+	Roles           map[string]bool   `json:"roles"`
+	Tokens          map[string]string `json:"-"`
+	DateCreated     time.Time
+	DateLastLogin   time.Time
+	DateResetPasswd time.Time
+	Enabled         bool
+	Deleted         bool
 }
 
 func (user *User) FindByEmail(email string) (code int, err error) {
