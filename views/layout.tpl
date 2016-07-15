@@ -24,7 +24,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <a  class="navbar-brand"  rel="home"  href="http://accounts.igenetech.com"  title="iGeneTech">
                     <!--<img id="iGeneTechLogo" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/>-->
-                    <b>User Information Center - iGeneTech</b>
+                    <i>User Information Center - iGeneTech</i>
                 </a>
 
                 <ul class="nav navbar-nav navbar-right">
