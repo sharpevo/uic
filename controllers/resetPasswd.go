@@ -12,7 +12,7 @@ import (
 	"uic/utils/mail"
 )
 
-const EXP = 1 // 30 min
+const EXP = 10 // 10 min
 
 type ForgotPasswdController struct {
 	BaseController
@@ -76,7 +76,7 @@ func (c *ForgotPasswdController) Post() {
 	token, err := c.GenerateToken(user.Id.Hex(), int64(EXP))
 	if err != nil {
 		beego.Error("GenerateResetToken:", err)
-		flash.Error("Fail to send request.")
+		flash.Error("Invalid request.")
 		flash.Store(&c.Controller)
 		c.Redirect(c.URLFor(".Get"), 302)
 		return
