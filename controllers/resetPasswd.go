@@ -21,13 +21,26 @@ type ForgotPasswdController struct {
 func (c *ForgotPasswdController) Get() {
 	beego.ReadFromRequest(&c.Controller)
 	c.Data["xsrfdata"] = template.HTML(c.XSRFFormHTML())
+	c.Data["Email"] = c.GetString("email")
 	c.Layout = "layout.tpl"
 	c.TplName = "forgotPasswd.tpl"
 }
 
 func (c *ForgotPasswdController) Post() {
-	email := strings.ToLower(c.GetString("email"))
 	flash := beego.NewFlash()
+	email := strings.ToLower(c.GetString("email"))
+
+	if ok := cpt.VerifyReq(c.Ctx.Request); !ok {
+		flash.Error("Invalid Captcha.")
+		flash.Store(&c.Controller)
+		c.Redirect(
+			c.URLFor(
+				".Get",
+				"email", email),
+			302)
+		return
+	}
+
 	valid := validation.Validation{}
 	valid.Required(email, "email")
 	if valid.HasErrors() {
