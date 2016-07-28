@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -23,6 +24,12 @@ func (c *CookieController) Get() {
 
 	c.SetCookie(jwt)
 
+	domainList := strings.Split(
+		beego.AppConfig.DefaultString("appdomains", ""),
+		",")
+	beego.Error("Domains:", beego.AppConfig.DefaultString("appdomains", ""))
+	beego.Debug("ParseDomains:", domainList)
+	c.Data["Domains"] = domainList
 	c.TplName = "cookie.tpl"
 }
 

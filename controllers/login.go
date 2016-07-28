@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/astaxie/beego"
 	"net/http"
+	"strings"
 	"uic/models"
 )
 
@@ -146,6 +147,12 @@ func (c *LoginController) Post() {
 	beego.Debug("return_to", returnTo)
 
 	c.SetCookie(".igenetech.com", tokenString, int64(duration))
+
+	domainList := strings.Split(
+		beego.AppConfig.DefaultString("appdomains", ""),
+		",")
+	beego.Debug("ParseDomains:", domainList)
+	c.Data["Domains"] = domainList
 
 	c.TplName = "cookie.tpl"
 
