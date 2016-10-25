@@ -41,7 +41,7 @@
                         <li><span class="fa fa-check text-success"></span> MultipSeq<small> (only for registered user)</small></li>
                         <li><a href="/read-more/"><u>Read more</u></a></li>
                     </ul>
-                    <p><a href="{{urlfor "RegisterController.Get"}}" class="btn btn-info btn-block">Yes please, register now!</a></p>
+                    <p><a href="{{urlfor "RegisterController.Get"}}" class="btn btn-info btn-block {{if not .SignUpEnabled}}disabled{{end}}">Yes please, register now!</a></p>
                 </div>
             </div>
         </div>
