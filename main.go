@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"sso-client/utils/rbac"
+	"strings"
 	"time"
 	"uic/mongo"
 	_ "uic/routers"
@@ -16,6 +17,10 @@ func FormatDate(date time.Time) (result string) {
 	return date.Format(layout)
 }
 
+func SpaceToDot(str string) (result string) {
+	return strings.Replace(str, " ", ".", -1)
+}
+
 func main() {
 	err := mongo.Startup()
 	if err != nil {
@@ -23,10 +28,12 @@ func main() {
 	}
 
 	beego.AddFuncMap("Format", FormatDate)
+	beego.AddFuncMap("SpaceToDot", SpaceToDot)
 
 	beego.AddFuncMap("hasRole", rbac.HasRole)
 	rbac.AdminCheck(
 		"/roles",
+		"/apps",
 	)
 	if !beego.AppConfig.DefaultBool("signupenabled", false) {
 		beego.Debug("Registration:", "disabled")
