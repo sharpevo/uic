@@ -28,6 +28,11 @@ func main() {
 	rbac.AdminCheck(
 		"/roles",
 	)
+	if beego.AppConfig.DefaultBool("signup", false) {
+		rbac.AdminCheck(
+			"/rigister",
+		)
+	}
 
 	beego.Run()
 
