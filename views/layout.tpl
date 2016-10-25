@@ -22,7 +22,7 @@
     <body>
         <nav class="navbar navbar-default nav-fixed-top" role="navigation">
             <div id="navbar" class="navbar-collapse collapse">
-                <a  class="navbar-brand"  rel="home"  href="http://accounts.igenetech.com"  title="iGeneTech">
+                <a  class="navbar-brand"  rel="home"  href="http://{{.UICDomain}}"  title="iGeneTech">
                     <!--<img id="iGeneTechLogo" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/>-->
                     <i>User Information Center - iGeneTech</i>
                 </a>
@@ -34,12 +34,12 @@
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                        <li><a href="http://accounts.igenetech.com/profile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                      <li><a href="http://{{.UICDomain}}/profile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                         {{if hasRole .UserInfo "admin"}}
-                        <li><a href="http://accounts.igenetech.com/roles">Manage Users <span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                        <li><a href="http://{{.UICDomain}}/roles">Manage Users <span class="glyphicon glyphicon-user pull-right"></span></a></li>
                         <li class="divider"></li>
                         {{end}}
-                      <li><a href="http://accounts.igenetech.com/logout">Logout <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        <li><a href="http://{{.UICDomain}}/logout">Logout <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                   </ul>
                 </li>
 

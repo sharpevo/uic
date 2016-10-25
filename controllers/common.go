@@ -48,6 +48,14 @@ func init() {
 
 func (c *BaseController) Prepare() {
 	c.GetUserInfo()
+	c.Data["UICDomain"] = fmt.Sprintf(
+		"%s:%s",
+		beego.AppConfig.DefaultString(
+			"uicdomain",
+			"accounts.igenetech.com"),
+		beego.AppConfig.DefaultString(
+			"httpport",
+			"8080"))
 	priBytes, err := ioutil.ReadFile("keys/ip.rsa")
 	if err != nil {
 		beego.Error("ReadPrivateBytes:", err)

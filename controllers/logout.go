@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 	"uic/models"
 )
@@ -32,7 +33,14 @@ func (c *LogoutController) Get() {
 	}
 	beego.Debug("UserLogout:", user.Email)
 	beego.Debug("UserTokens:", user.Tokens)
-	returnTo := "accounts.igenetech.com/login"
+	returnTo := c.GetString("return_to")
+	if returnTo == "" {
+		returnTo = fmt.Sprintf(
+			"%s/%s",
+			c.Data["UICDomain"],
+			"login")
+	}
+
 	c.Data["ReturnTo"] = returnTo
 	c.TplName = "logout.tpl"
 	return
