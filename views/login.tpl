@@ -12,6 +12,7 @@
                             <div class="form-group">
                                 <label for="email" class="control-label">Email</label>
                                 <input type="text" class="form-control" id="emair" name="email" value="{{.Email}}" required="" title="Please enter you email" placeholder="example@gmail.com">
+                                <input type="hidden" name="return_to" value="{{.ReturnTo}}">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
