@@ -16,6 +16,7 @@ type LoginController struct {
 func (c *LoginController) Get() {
 	beego.ReadFromRequest(&c.Controller)
 	c.Data["Email"] = c.GetString("email")
+	c.Data["ReturnTo"] = c.GetString("return_to")
 	c.Layout = "layout.tpl"
 	c.TplName = "login.tpl"
 }
