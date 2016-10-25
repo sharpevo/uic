@@ -15,6 +15,7 @@ func init() {
 
 	beego.Router("/logout", &controllers.LogoutController{})
 	beego.Router("/roles", &controllers.RoleController{})
+	beego.Router("/apps", &controllers.AppController{})
 	beego.Router("/profile", &controllers.ProfileController{})
 	ns := beego.NewNamespace(
 		"v1",
