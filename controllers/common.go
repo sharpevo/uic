@@ -48,14 +48,9 @@ func init() {
 
 func (c *BaseController) Prepare() {
 	c.GetUserInfo()
-	c.Data["UICDomain"] = fmt.Sprintf(
-		"%s:%s",
-		beego.AppConfig.DefaultString(
-			"uicdomain",
-			"accounts.igenetech.com"),
-		beego.AppConfig.DefaultString(
-			"httpport",
-			"8080"))
+	c.Data["UICDomain"] = beego.AppConfig.DefaultString(
+		"uicdomain",
+		"accounts.igenetech.com")
 
 	c.Data["SignUpEnabled"] = beego.AppConfig.DefaultBool("signupenabled", false)
 
