@@ -45,10 +45,11 @@
 
               {{else}}
 
-
+              {{if .SignUpEnabled}}
               <li>
                <a href="{{urlfor "RegisterController.Get"}}">Register</a>
               </li>
+              {{end}}
               <li>
                <a href="{{urlfor "LoginController.Get"}}">Login</a>
               </li>
