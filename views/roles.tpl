@@ -10,13 +10,23 @@
     <tbody>
         {{range $index, $user := .UserList}}
         <tr data-id="{{$user.Id.Hex}}">
-            <td>{{$user.Name}}</td>
+            <td>
+                {{$user.Name}}<br/>
+                {{range $k, $v := $user.Apps}}
+                <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-appname="{{SpaceToDot $k}}" data-target="#deleteApp" class="badge" style="margin-top:5px;"> {{SpaceToDot $k}}</a><br/>
+                {{end}}
+                <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-target="#createApp">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </td>
             <td>{{$user.Email}}</td>
             <td>
                 {{range $k, $v := $user.Roles}}
                 <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-rolename="{{$k}}" data-target="#deleteRole"> {{$k}} </a><br/>
                 {{end}} 
-                <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-target="#createRole"> + </a>
+                <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-target="#createRole">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
             </td>
             <td>Edit</td>
         </tr>
