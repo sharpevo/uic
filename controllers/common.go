@@ -56,6 +56,9 @@ func (c *BaseController) Prepare() {
 		beego.AppConfig.DefaultString(
 			"httpport",
 			"8080"))
+
+	c.Data["SignUpEnabled"] = beego.AppConfig.DefaultBool("signupenabled", false)
+
 	priBytes, err := ioutil.ReadFile("keys/ip.rsa")
 	if err != nil {
 		beego.Error("ReadPrivateBytes:", err)
