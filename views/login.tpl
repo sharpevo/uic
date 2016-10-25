@@ -12,6 +12,7 @@
                             <div class="form-group">
                                 <label for="email" class="control-label">Email</label>
                                 <input type="text" class="form-control" id="emair" name="email" value="{{.Email}}" required="" title="Please enter you email" placeholder="example@gmail.com">
+                                <input type="hidden" name="return_to" value="{{.ReturnTo}}">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
@@ -39,7 +40,7 @@
                         <li><span class="fa fa-check text-success"></span> sRNAPrimer</li>
                         <li><span class="fa fa-check text-success"></span> TargetSeq<small> (only for registered user)</small></li>
                         <li><span class="fa fa-check text-success"></span> MultipSeq<small> (only for registered user)</small></li>
-                        <li><a href="/read-more/"><u>Read more</u></a></li>
+                        <li><a href="http://www.igenetech.com"><u>Read more</u></a></li>
                     </ul>
                     <p><a href="{{urlfor "RegisterController.Get"}}" class="btn btn-info btn-block {{if not .SignUpEnabled}}disabled{{end}}">Yes please, register now!</a></p>
                 </div>
