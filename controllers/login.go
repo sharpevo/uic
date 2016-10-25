@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/astaxie/beego"
 	"net/http"
 	"strings"
@@ -140,7 +141,10 @@ func (c *LoginController) Post() {
 	// Process cookies
 	returnTo := c.GetString("return_to")
 	if returnTo == "" {
-		returnTo = "accounts.igenetech.com/profile"
+		returnTo = fmt.Sprintf(
+			"%s/%s",
+			c.Data["UICDomain"],
+			"profile")
 	}
 	c.Data["Token"] = tokenString
 	c.Data["ReturnTo"] = returnTo
