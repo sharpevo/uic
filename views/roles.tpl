@@ -44,7 +44,7 @@
 				<div class="btn-group" data-toggle="buttons">
                 {{range $index, $app := $appList}}
                 <label class="btn btn-xs btn-default {{if HasApp $user $app.Id.Hex}}active{{end}} tck" data-userid="{{$user.Id.Hex}}" data-appid="{{$app.Id.Hex}}">
-						<input type="checkbox" autocomplete="off" data-userid="{{$user.Id.Hex}}" data-appid="{{$app.Id.Hex}}" data-target="#toggleApp"> {{$app.Domain}}
+						<input type="checkbox" autocomplete="off" data-userid="{{$user.Id.Hex}}" data-appid="{{$app.Id.Hex}}" data-target="#toggleApp"> {{$app.Name}}
 					</label>
 				{{end}}
 				</div>
