@@ -82,22 +82,14 @@ func (app *App) AddUser(userId string) error {
 	}
 	app.Users[userId] = true
 	_, err := app.Update()
-	user := User{}
-	user.FindById(userId)
-	user.AddApp(app.Id.Hex())
-	beego.Debug("Add User ", user.Email, "to App ", app.Domain)
-	beego.Debug("Add App ", app.Domain, "to User ", user.Email)
+	beego.Debug("Add User ", userId, "to App ", app.Domain)
 	return err
 }
 
 func (app *App) RemoveUser(userId string) error {
 	delete(app.Users, userId)
 	_, err := app.Update()
-	user := User{}
-	user.FindById(userId)
-	user.RemoveApp(app.Id.Hex())
-	beego.Debug("Remove User ", user.Email, "from App ", app.Domain)
-	beego.Debug("Remove App ", app.Domain, "from User ", user.Email)
+	beego.Debug("Remove User ", userId, "from App ", app.Domain)
 	return err
 }
 
