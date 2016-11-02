@@ -201,17 +201,40 @@ func (user *User) RemoveRole(roleName string) error {
 	return err
 }
 
-func (user *User) AddApp(appDomain string) error {
+func (user *User) AddApp(appId string) error {
 	if user.Apps == nil {
 		user.Apps = make(map[string]bool)
 	}
-	user.Apps[appDomain] = true
+	user.Apps[appId] = true
 	_, err := user.Update()
+	app := App{}
+	app.FindById(appId)
+	app.AddUser(user.Id.Hex())
 	return err
 }
 
-func (user *User) RemoveApp(appDomain string) error {
-	delete(user.Apps, appDomain)
+func (user *User) RemoveApp(appId string) error {
+	delete(user.Apps, appId)
 	_, err := user.Update()
+	app := App{}
+	app.FindById(appId)
+	app.RemoveUser(user.Id.Hex())
+	return err
+}
+
+func (user *User) Delete() error {
+	session, err := mongo.CopyMasterSession()
+	if err != nil {
+		return err
+	}
+
+	for appId := range user.Apps {
+		app := App{}
+		app.FindById(appId)
+		app.RemoveUser(user.Id.Hex())
+	}
+
+	collection := session.DB(mongo.MongoConfig.Database).C("user")
+	err = collection.RemoveId(user.Id)
 	return err
 }
