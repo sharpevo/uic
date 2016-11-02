@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"github.com/astaxie/beego"
 	"gopkg.in/mgo.v2/bson"
 	"uic/mongo"
 )
@@ -17,7 +18,6 @@ type App struct {
 
 func (app *App) Create() (code int, err error) {
 	app.Id = bson.NewObjectId()
-	app.DateCreated = time.Now()
 	app.Enabled = true
 	session, err := mongo.CopyMasterSession()
 	if err != nil {
@@ -35,23 +35,23 @@ func (app *App) Create() (code int, err error) {
 	return 0, nil
 }
 
-func (app *App) FindById(appId string) (app App, err error) {
+func (app *App) FindById(appId string) error {
 	session, err := mongo.CopyMasterSession()
 	if err != nil {
-		return app, err
+		return err
 	}
 
-	if !bson.IsObjectIdHex(userId) { // panic, objectIdHex ""
-		return app, errors.New("user id is invalid")
+	if !bson.IsObjectIdHex(appId) { // panic, objectIdHex ""
+		return errors.New("user id is invalid")
 	}
 
 	collection := session.DB(mongo.MongoConfig.Database).C("app")
 	err = collection.FindId(bson.ObjectIdHex(appId)).One(&app)
-	return app, err
+	return err
 
 }
 
-func GetAllApps() (apps []App) {
+func GetAllApps() (apps []App, err error) {
 	session, err := mongo.CopyMasterSession()
 	if err != nil {
 		return apps, err
@@ -68,7 +68,7 @@ func (app *App) Update() (code int, err error) {
 		return ERROR_DATABASE, err
 	}
 	collection := session.DB(mongo.MongoConfig.Database).C("app")
-	err = collection.Update(bson.M{"_id": app.Id}, user)
+	err = collection.Update(bson.M{"_id": app.Id}, app)
 	beego.Debug("UpdateApp:", app)
 	if err != nil {
 		beego.Error(err)
@@ -76,7 +76,7 @@ func (app *App) Update() (code int, err error) {
 	return ERROR_DATABASE, err
 }
 
-func (app *App) AddUser(userId string) {
+func (app *App) AddUser(userId string) error {
 	if app.Users == nil {
 		app.Users = make(map[string]bool)
 	}
@@ -85,15 +85,19 @@ func (app *App) AddUser(userId string) {
 	user := User{}
 	user.FindById(userId)
 	user.AddApp(app.Id.Hex())
+	beego.Debug("Add User ", user.Email, "to App ", app.Domain)
+	beego.Debug("Add App ", app.Domain, "to User ", user.Email)
 	return err
 }
 
-func (app *App) RemoveUser(userId string) {
+func (app *App) RemoveUser(userId string) error {
 	delete(app.Users, userId)
 	_, err := app.Update()
 	user := User{}
 	user.FindById(userId)
 	user.RemoveApp(app.Id.Hex())
+	beego.Debug("Remove User ", user.Email, "from App ", app.Domain)
+	beego.Debug("Remove App ", app.Domain, "from User ", user.Email)
 	return err
 }
 
