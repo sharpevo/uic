@@ -112,7 +112,7 @@ func (user *User) FindById(id string) (code int, err error) {
 		return ERROR_INPUT, err
 	}
 
-	err = collection.FindId(bson.ObjectIdHex(id)).One(user)
+	err = collection.FindId(bson.ObjectIdHex(id)).One(&user)
 	if err != nil {
 		return ERROR_NOT_FOUND, err
 	}
@@ -210,6 +210,8 @@ func (user *User) AddApp(appId string) error {
 	app := App{}
 	app.FindById(appId)
 	app.AddUser(user.Id.Hex())
+	beego.Debug("Add User ", user.Email, "to App ", app.Domain)
+	beego.Debug("Add App ", app.Domain, "to User ", user.Email)
 	return err
 }
 
@@ -219,6 +221,8 @@ func (user *User) RemoveApp(appId string) error {
 	app := App{}
 	app.FindById(appId)
 	app.RemoveUser(user.Id.Hex())
+	beego.Debug("Remove User ", user.Email, "from App ", app.Domain)
+	beego.Debug("Remove App ", app.Domain, "from User ", user.Email)
 	return err
 }
 
