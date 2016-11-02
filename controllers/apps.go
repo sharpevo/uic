@@ -11,11 +11,11 @@ type AppController struct {
 
 func (c *AppController) Get() {
 	beego.ReadFromRequest(&c.Controller)
-	allApps, err := models.GetAllApps()
-	if err != nil {
-		beego.Error(err)
-	}
-	c.Data["Apps"] = allApps
+	//allApps, err := models.GetAllApps()
+	//if err != nil {
+	//beego.Error(err)
+	//}
+	//c.Data["Apps"] = allApps
 	c.Layout = "layout.tpl"
 	c.TplName = "app.tpl"
 }
