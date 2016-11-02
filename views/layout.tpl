@@ -6,7 +6,7 @@
         <title>User Information Center - iGeneTech</title>
 
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/static/css/bootstrap-watch.min.css" rel="stylesheet">
+		<link href="/static/css/bootstrap-watch.min.css" rel="stylesheet">
         <link href="/static/css/main.css" rel="stylesheet">
         <link href="/static/css/font-awesome.min.css" rel="stylesheet">
 
@@ -20,41 +20,45 @@
     </head>
 
     <body>
+        <!--<img id="iGeneTechLogo" class="pull-right" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/></p>-->
         <nav class="navbar navbar-default nav-fixed-top" role="navigation">
             <div id="navbar" class="navbar-collapse collapse">
-                <a  class="navbar-brand"  rel="home"  href="http://{{.UICDomain}}"  title="iGeneTech">
-                    <!--<img id="iGeneTechLogo" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/>-->
-                    <i>User Information Center - iGeneTech</i>
-                </a>
-
+				<a  class="navbar-brand"  rel="home"  href="http://{{.UICDomain}}"  title="iGeneTech">
+                    User Information Center
+				</a>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{urlfor "HomeController.Get"}}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Apps<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            {{range $index, $app := .AppList}}
+                            <li><a href="http://{{$app.Domain}}"disabled>{{$app.Name}}</a></li>
+                            {{end}}
+                        </ul>
+                    </li>
+                    {{ if .UserInfo.Id }}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="http://{{.UICDomain}}/profile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                            {{if hasRole .UserInfo "admin"}}
+                            <li><a href="http://{{.UICDomain}}/roles">Manage Users <span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            {{end}}
+                            <li><a href="http://{{.UICDomain}}/logout">Logout <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        </ul>
+                    </li>
 
-              {{ if .UserInfo.Id }}
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                      <li><a href="http://{{.UICDomain}}/profile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                        {{if hasRole .UserInfo "admin"}}
-                        <li><a href="http://{{.UICDomain}}/roles">Manage Users <span class="glyphicon glyphicon-user pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        {{end}}
-                        <li><a href="http://{{.UICDomain}}/logout">Logout <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                  </ul>
-                </li>
+                    {{else}}
 
-              {{else}}
-
-              {{if .SignUpEnabled}}
-              <li>
-               <a href="{{urlfor "RegisterController.Get"}}">Register</a>
-              </li>
-              {{end}}
-              <li>
-               <a href="{{urlfor "LoginController.Get"}}">Login</a>
-              </li>
-              {{ end }}
-
+                    {{if .SignUpEnabled}}
+                    <li>
+                        <a href="{{urlfor "RegisterController.Get"}}">Register</a>
+                    </li>
+                    {{end}}
+                    <li>
+                        <a href="{{urlfor "LoginController.Get"}}">Login</a>
+                    </li>
+                    {{ end }}
                 </ul>
             </div>
         </nav>
@@ -82,37 +86,19 @@
             {{end}}
             {{.LayoutContent}}
         </div>
-        <hr>
 
-        <footer class="footer-text text-center">
-            <ul class="list-unstyled">
-                <li>
-                    <ul class="list-inline">
-                        <li>
-                            &copy;2016
-                        </li>
-                        <li>
-                            艾吉泰康生物科技（北京）有限公司 版权所有
-                        </li>
-                        <li>
-                            京ICP备15025054号-2
-                        </li>
-                    </ul>
-                </li>
-                <li class="phone">
-                    <ul class="list-inline">
-                        <li>
-                            <span class="glyphicon glyphicon-earphone"></span> : 010-84097967
-                        </li>
-                        <li>
-                            <a href="mailto:market@igenetech.com" title="Contact us!">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                                : market@<span style="display:none;">null</span>igenetech.com
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </footer>
+		<div class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<div class="navbar-text" style="margin: 0 0 0 -30px; padding-top: 14px;">
+					<p>&copy;2016 艾吉泰康生物科技（北京）有限公司 版权所有 京ICP备15025054号-2</p>
+				</div>
+				<div class="navbar-text pull-right" style="margin-right: -40px;">
+                    4008190260
+                    <a href="mailto:market@igenetech.com" title="Contact us!" style="color:#fff;">
+                        market@<span style="display:none;">null</span>igenetech.com</div>
+                    </a>
+
+			</div>
+		</div>
     </body>
 </html>
