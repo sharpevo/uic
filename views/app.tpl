@@ -33,8 +33,8 @@
             </td>
             <td>
 				{{$app.Enabled}}
-                <a href="#" data-toggle="modal" data-id="{{$app.Id.Hex}}" data-appname="{{$app.Name}}" data-target="#deleteApp" class="pull-right">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <a href="#" data-toggle="modal" data-id="{{$app.Id.Hex}}" data-name="{{$app.Name}}" data-target="#deleteApp" class="pull-right">
+                    delete
                 </a>
             </td>
         </tr>
@@ -79,7 +79,7 @@
             <form action="{{urlfor "AppController.Post"}}" method="POST">
                 <div class="modal-body">
                     <input type="hidden" name="appId" id="appId" class="form-control" value="">
-                    <p>Delete app '<span id="appNameShown"></span>' ?</p>
+                    <p>Delete app '<span id="appName"></span>' ?</p>
                 </div>
                 <div class="modal-footer">
                     <input type="submit" value="Confirm" class="btn btn-info" tabindex="2">
@@ -92,11 +92,9 @@
 $(function(){
     $('#deleteApp').on('show.bs.modal', function() {
         $appId = $(event.target).data('id');
-        console.log($appId);
-        $appName = $(event.target).data('appname');
+        $appName = $(event.target).data('name');
         $(this).find("#appId").val($appId);
-        $(this).find("#appName").val($appName);
-        $(this).find("#appNameShown").html($appName);
+        $(this).find("#appName").html($appName);
     });
 });
 </script>
