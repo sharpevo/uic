@@ -52,10 +52,10 @@
             <form action="{{urlfor "AppController.Post"}}" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" name="appName" id="appName" class="form-control" value="" placeholder="targetseq" tabindex="1">
+                        <input type="text" name="appName" id="appName" class="form-control" value="" placeholder="Panel基因/坐标搜索" tabindex="1">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="appDomain" id="appDomain" class="form-control" value="" placeholder="www.targetseq.com" tabindex="2">
+                        <input type="text" name="appDomain" id="appDomain" class="form-control" value="" placeholder="panel.igenetech.com" tabindex="2">
                     </div>
                     <div class="form-group">
                         <input type="text" name="appRemark" id="appRemark" class="form-control" value="" placeholder="notes..." tabindex="3">
