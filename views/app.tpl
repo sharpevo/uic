@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        {{range $index, $app := .Apps}}
+        {{range $index, $app := .AppList}}
         <tr data-id="{{$app.Id.Hex}}">
             <td>
                 <a href="#" data-toggle="modal"
