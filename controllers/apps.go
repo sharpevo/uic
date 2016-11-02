@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"strings"
 	"uic/models"
 )
 
@@ -12,7 +11,11 @@ type AppController struct {
 
 func (c *AppController) Get() {
 	beego.ReadFromRequest(&c.Controller)
-	c.Data["Apps"] = models.GetAllApps()
+	allApps, err := models.GetAllApps()
+	if err != nil {
+		beego.Error(err)
+	}
+	c.Data["Apps"] = allApps
 	c.Layout = "layout.tpl"
 	c.TplName = "app.tpl"
 }
@@ -21,6 +24,24 @@ func (c *AppController) Post() {
 	flash := beego.NewFlash()
 	c.Layout = "layout.tpl"
 	c.TplName = "app.tpl"
+
+	appId := c.GetString("appId")
+	if appId != "" {
+		app := models.App{}
+		app.FindById(appId)
+		err := app.Delete()
+		beego.Debug("Remove App", app.Domain)
+		if err != nil {
+			beego.Error(err)
+			flash.Error("Failed to delete app.")
+		} else {
+			flash.Notice("Success!")
+		}
+		flash.Store(&c.Controller)
+		c.Redirect(
+			c.URLFor(".Get"), 302)
+		return
+	}
 
 	appName := c.GetString("appName")
 	appDomain := c.GetString("appDomain")
