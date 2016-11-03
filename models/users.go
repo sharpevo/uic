@@ -22,7 +22,7 @@ type User struct {
 	Email           string            `json:"Email"`
 	Password        string            `json:"password`
 	Roles           map[string]bool   `json:"roles"`
-	Apps            map[string]bool   `json:"apps"`
+	Apps            map[string]bool   `json:"apps" bson:"appids"`
 	Tokens          map[string]string `json:"-"`
 	DateCreated     time.Time
 	DateLastLogin   time.Time
