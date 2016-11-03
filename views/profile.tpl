@@ -66,7 +66,7 @@ $(document).ready(function() {
 							</h5>
 						</div>
 						<div class="col-md-7 col-lg-7">
-							<h5><small class="pull-right" style="margin-top:5px;">contact <a href="mailto:liu.yang@igenetech.com" style="color:#777;">Admin</a> to light up the product</small></h5>
+							<h5><small class="pull-right" style="margin-top:5px;">contact <a href="mailto:liu.yang@igenetech.com" style="color:#999;">admin</a> to light up the product</small></h5>
 						</div>
 					</div>
 					<div class="list-group">
