@@ -10,7 +10,7 @@
         <p>Please wait...</p>
         {{ $token := .Token }}
         {{ range $domain := .Domains }}
-            <img src="{{$domain}}?token={{$token}}" style="display:none;"/>
+            <img src="http://{{$domain}}?token={{$token}}" style="display:none;"/>
         {{end}}
     </body>
 </html>

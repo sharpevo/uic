@@ -7,7 +7,6 @@ import (
 
 func init() {
 	beego.Router("/", &controllers.HomeController{})
-	beego.Router("/cookie", &controllers.CookieController{})
 	beego.Router("/register", &controllers.RegisterController{})
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/forgot", &controllers.ForgotPasswdController{})
@@ -16,6 +15,7 @@ func init() {
 	beego.Router("/logout", &controllers.LogoutController{})
 	beego.Router("/roles", &controllers.RoleController{})
 	beego.Router("/apps", &controllers.AppController{})
+	beego.Router("/userapp", &controllers.UserAppController{})
 	beego.Router("/profile", &controllers.ProfileController{})
 	ns := beego.NewNamespace(
 		"v1",

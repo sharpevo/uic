@@ -22,7 +22,7 @@ type User struct {
 	Email           string            `json:"Email"`
 	Password        string            `json:"password`
 	Roles           map[string]bool   `json:"roles"`
-	Apps            map[string]bool   `json:"apps"`
+	Apps            map[string]bool   `json:"apps" bson:"appids"`
 	Tokens          map[string]string `json:"-"`
 	DateCreated     time.Time
 	DateLastLogin   time.Time
@@ -112,7 +112,7 @@ func (user *User) FindById(id string) (code int, err error) {
 		return ERROR_INPUT, err
 	}
 
-	err = collection.FindId(bson.ObjectIdHex(id)).One(user)
+	err = collection.FindId(bson.ObjectIdHex(id)).One(&user)
 	if err != nil {
 		return ERROR_NOT_FOUND, err
 	}
@@ -201,17 +201,44 @@ func (user *User) RemoveRole(roleName string) error {
 	return err
 }
 
-func (user *User) AddApp(appDomain string) error {
+func (user *User) AddApp(appId string) error {
 	if user.Apps == nil {
 		user.Apps = make(map[string]bool)
 	}
-	user.Apps[appDomain] = true
+	user.Apps[appId] = true
 	_, err := user.Update()
+	app := App{}
+	app.FindById(appId)
+	app.AddUser(user.Id.Hex())
+	beego.Debug("Add User ", user.Email, "to App ", app.Domain)
+	beego.Debug("Add App ", app.Domain, "to User ", user.Email)
 	return err
 }
 
-func (user *User) RemoveApp(appDomain string) error {
-	delete(user.Apps, appDomain)
+func (user *User) RemoveApp(appId string) error {
+	delete(user.Apps, appId)
 	_, err := user.Update()
+	app := App{}
+	app.FindById(appId)
+	app.RemoveUser(user.Id.Hex())
+	beego.Debug("Remove User ", user.Email, "from App ", app.Domain)
+	beego.Debug("Remove App ", app.Domain, "from User ", user.Email)
+	return err
+}
+
+func (user *User) Delete() error {
+	session, err := mongo.CopyMasterSession()
+	if err != nil {
+		return err
+	}
+
+	for appId := range user.Apps {
+		app := App{}
+		app.FindById(appId)
+		app.RemoveUser(user.Id.Hex())
+	}
+
+	collection := session.DB(mongo.MongoConfig.Database).C("user")
+	err = collection.RemoveId(user.Id)
 	return err
 }

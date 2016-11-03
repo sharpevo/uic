@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"net/http"
-	"strings"
 	"uic/models"
 )
 
@@ -151,11 +150,19 @@ func (c *LoginController) Post() {
 	c.Data["ReturnTo"] = returnTo
 	beego.Debug("return_to", returnTo)
 
-	c.SetCookie(".igenetech.com", tokenString, int64(duration))
+	c.SetCookie(
+		beego.AppConfig.DefaultString("uicdomain", "accounts.igenetech.com"),
+		tokenString,
+		int64(duration))
 
-	domainList := strings.Split(
-		beego.AppConfig.DefaultString("appdomains", ""),
-		",")
+	// authorized only for enabled domain
+	domainList := []string{}
+	for appId, _ := range user.Apps {
+		app := models.App{}
+		app.FindById(appId)
+		domainList = append(domainList, app.Domain)
+	}
+
 	beego.Debug("ParseDomains:", domainList)
 	c.Data["Domains"] = domainList
 

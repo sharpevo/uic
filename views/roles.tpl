@@ -1,23 +1,53 @@
+<div id="ajaxFullSpinner"></div>
+<style>
+#ajaxFullSpinner {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+    background: url('/static/img/logo.png') 50% 50% no-repeat rgba(249,249,249,0.7);
+	background-size: 300px;
+}
+
+.btn{
+	margin-right: 5px;
+	opacity: .5;
+}
+.btn-xs{
+	line-height: 1;
+}
+.btn.active:hover,.btn.active,.btn:active {
+	opacity: 1;
+}
+
+</style>
 <table class="table table-hover table-striped">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Apps</th>
             <th>Email</th>
             <th>Roles</th>
             <th>UserOperation</th>
         </tr>
     </thead>
     <tbody>
+		{{$appList := .AppList}}
         {{range $index, $user := .UserList}}
         <tr data-id="{{$user.Id.Hex}}">
             <td>
-                {{$user.Name}}<br/>
-                {{range $k, $v := $user.Apps}}
-                <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-appname="{{SpaceToDot $k}}" data-target="#deleteApp" class="badge" style="margin-top:5px;"> {{SpaceToDot $k}}</a><br/>
-                {{end}}
-                <a href="#" data-toggle="modal" data-id="{{$user.Id.Hex}}" data-target="#createApp">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
+                {{$user.Name}}
+			</td>
+			<td>
+				<div class="btn-group" data-toggle="buttons">
+                {{range $index, $app := $appList}}
+                <label class="btn btn-xs btn-default {{if HasApp $user $app.Id.Hex}}active{{end}} tck" data-userid="{{$user.Id.Hex}}" data-appid="{{$app.Id.Hex}}">
+						<input type="checkbox" autocomplete="off" data-userid="{{$user.Id.Hex}}" data-appid="{{$app.Id.Hex}}" data-target="#toggleApp"> {{$app.Name}}
+					</label>
+				{{end}}
+				</div>
             </td>
             <td>{{$user.Email}}</td>
             <td>
@@ -33,6 +63,46 @@
         {{end}}
     </tbody>
 </table>
+
+
+
+
+
+<script>
+$(window).load(function() {
+	ajaxFullSpinner = $("#ajaxFullSpinner")
+	$(ajaxFullSpinner).fadeOut(1000);
+	$(document).ajaxStart(function(){
+		$(ajaxFullSpinner).show()
+	}).ajaxStop(function(){
+		$(ajaxFullSpinner).fadeOut(1000);
+	});
+})
+
+$(document).ready(function(){
+    $(".tck").on("click",function(event){
+        $userId = $(event.target).data('userid');
+        $appId = $(event.target).data('appid');
+        console.log($userId)
+        console.log($appId)
+        $.ajax({
+            url: "{{urlfor "UserAppController.Post"}}",
+            data: {
+                "userId":$userId,
+                "appId":$appId,
+            },
+            method: "POST",
+            success: function(response){
+                window.location.reload()
+            },
+            error: function(xhr, status, error){
+                alert(xhr.responseText)
+            }
+        })
+
+    })
+})
+</script>
 
 <!-- Modal -->
 <div class="modal fade" id="createRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">

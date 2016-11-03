@@ -14,6 +14,7 @@ func (c *ProfileController) Get() {
 	user := models.User{}
 	user.FindById(c.UserInfo.Id)
 	c.Data["User"] = user
+	c.Data["AppList"], _ = models.GetEnabledApps()
 	c.TplName = "profile.tpl"
 	c.Layout = "layout.tpl"
 }

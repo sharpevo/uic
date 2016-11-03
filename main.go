@@ -5,6 +5,7 @@ import (
 	"sso-client/utils/rbac"
 	"strings"
 	"time"
+	"uic/models"
 	"uic/mongo"
 	_ "uic/routers"
 )
@@ -21,6 +22,10 @@ func SpaceToDot(str string) (result string) {
 	return strings.Replace(str, " ", ".", -1)
 }
 
+func HasApp(user models.User, appId string) bool {
+	return user.Apps[appId]
+}
+
 func main() {
 	err := mongo.Startup()
 	if err != nil {
@@ -29,11 +34,13 @@ func main() {
 
 	beego.AddFuncMap("Format", FormatDate)
 	beego.AddFuncMap("SpaceToDot", SpaceToDot)
+	beego.AddFuncMap("HasApp", HasApp)
 
 	beego.AddFuncMap("hasRole", rbac.HasRole)
 	rbac.AdminCheck(
 		"/roles",
 		"/apps",
+		"/userapp",
 	)
 	if !beego.AppConfig.DefaultBool("signupenabled", false) {
 		beego.Debug("Registration:", "disabled")
