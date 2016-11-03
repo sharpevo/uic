@@ -4,6 +4,7 @@ a.dim{
 }
 .list-group-item{
 	border-left: none;
+	border-right: none;
 }
 </style>
 <script>
