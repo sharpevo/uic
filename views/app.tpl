@@ -1,3 +1,8 @@
+<style>
+tr.disabled{
+    opacity: 0.4;
+}
+</style>
 <a href="#" data-toggle="modal" data-id="" data-target="#createApp">
 	Create
 </a>
@@ -12,8 +17,8 @@
         </tr>
     </thead>
     <tbody>
-        {{range $index, $app := .AppList}}
-        <tr data-id="{{$app.Id.Hex}}">
+        {{range $index, $app := .AllAppList}}
+        <tr data-id="{{$app.Id.Hex}}" {{if not $app.Enabled}}class="disabled"{{end}}>
             <td>
                 <a href="#" data-toggle="modal"
                     data-id="{{$app.Id.Hex}}"
