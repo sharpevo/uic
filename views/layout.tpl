@@ -28,8 +28,8 @@
 
     <body>
         <!--<img id="iGeneTechLogo" class="pull-right" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/></p>-->
-        <nav class="navbar navbar-default nav-fixed-top navbar-static-top" role="navigation">
-            <div id="navbar" class="navbar-collapse collapse">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
 				<a  class="navbar-brand"  rel="home"  href="http://{{.UICDomain}}"  title="iGeneTech">
                     User Information Center
 				</a>
@@ -61,7 +61,7 @@
                     {{ end }}
                 </ul>
             </div>
-        </nav>
+        </div>
 
         <div class="container">
             {{ if .flash.notice }}
@@ -88,7 +88,7 @@
         </div>
 
 		<div class="navbar navbar-default navbar-fixed-bottom" style="margin-bottom: -10px;">
-			<div class="container">
+			<div class="container-fluid">
                 <div class="row">
                     <div class="col-md-7 col-lg-7">
                         <!--<div class="navbar-text" style="margin: 0 0 0 -30px; padding-top: 14px;">-->
