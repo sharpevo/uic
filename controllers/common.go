@@ -14,7 +14,6 @@ import (
 	"reflect"
 	"sso-client/controllers/common"
 	"time"
-	"uic/models"
 )
 
 type ControllerError struct {
@@ -54,7 +53,6 @@ func (c *BaseController) Prepare() {
 		"accounts.igenetech.com")
 
 	c.Data["SignUpEnabled"] = beego.AppConfig.DefaultBool("signupenabled", false)
-	c.Data["AppList"], _ = models.GetEnabledApps()
 
 	priBytes, err := ioutil.ReadFile("keys/ip.rsa")
 	if err != nil {
