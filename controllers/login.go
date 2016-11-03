@@ -150,7 +150,11 @@ func (c *LoginController) Post() {
 	c.Data["ReturnTo"] = returnTo
 	beego.Debug("return_to", returnTo)
 
-	c.SetCookie(".igenetech.com", tokenString, int64(duration))
+	c.SetCookie(
+		beego.AppConfig.DefaultString("uicdomain", "accounts.igenetech.com"),
+		tokenString,
+		int64(duration))
+
 	// authorized only for enabled domain
 	domainList := []string{}
 	for appId, _ := range user.Apps {
