@@ -13,7 +13,7 @@ type RoleController struct {
 func (c *RoleController) Get() {
 	beego.ReadFromRequest(&c.Controller)
 	c.Data["UserList"], _ = models.GetUsersSortByEmail()
-	c.Data["AppList"], _ = models.GetAllApps()
+	c.Data["AppList"], _ = models.GetEnabledApps()
 	c.TplName = "roles.tpl"
 	c.Layout = "layout.tpl"
 }

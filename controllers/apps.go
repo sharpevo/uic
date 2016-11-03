@@ -16,6 +16,7 @@ func (c *AppController) Get() {
 	//beego.Error(err)
 	//}
 	//c.Data["Apps"] = allApps
+	c.Data["AllAppList"], _ = models.GetAllApps()
 	c.Layout = "layout.tpl"
 	c.TplName = "app.tpl"
 }
