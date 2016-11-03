@@ -40,6 +40,7 @@ func main() {
 	rbac.AdminCheck(
 		"/roles",
 		"/apps",
+		"/userapp",
 	)
 	if !beego.AppConfig.DefaultBool("signupenabled", false) {
 		beego.Debug("Registration:", "disabled")
