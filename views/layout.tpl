@@ -27,14 +27,6 @@
                     User Information Center
 				</a>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Apps<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            {{range $index, $app := .AppList}}
-                            <li><a href="http://{{$app.Domain}}"disabled>{{$app.Name}}</a></li>
-                            {{end}}
-                        </ul>
-                    </li>
                     {{ if .UserInfo.Id }}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{.UserInfo.Email}}<span class="caret"></span></a>
