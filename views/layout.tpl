@@ -42,6 +42,7 @@
                             <li><a href="http://{{.UICDomain}}/profile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                             {{if hasRole .UserInfo "admin"}}
                             <li><a href="http://{{.UICDomain}}/roles">Manage Users <span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                            <li><a href="http://{{.UICDomain}}/apps">Manage Apps <span class="glyphicon glyphicon-th-large pull-right"></span></a></li>
                             <li class="divider"></li>
                             {{end}}
                             <li><a href="http://{{.UICDomain}}/logout">Logout <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
