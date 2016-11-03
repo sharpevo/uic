@@ -1,8 +1,15 @@
 <style>
-a:hover{
-    text-decoration: none;
+.list-group-item{
+	border-left: none;
 }
 </style>
+<script>
+$(document).ready(function() {
+    $('a[disabled]').click(function(event){
+		event.preventDefault(); // Prevent link from following its href
+    });
+});
+</script>
 <div id="profile-overlay" class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -16,6 +23,18 @@ a:hover{
                     <img alt="User Pic" src="https://tse3.mm.bing.net/th?id=OIP.Me6d1b1332b4e350d80c9932d0bfdfe6ao0&pid=15.1" class="img-circle img-responsive"> 
                 </div>
                 <div class=" col-md-9 col-lg-9 "> 
+					<div class="row">
+						<div class="col-md-3 col-lg-3">
+							<h5>
+								User Info
+							</h5>
+						</div>
+						<div class="col-md-9 col-lg-9">
+							<a href="#" data-toggle="modal" data-target="#editProfile" class="btn pull-right">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
                     <table class="table">
                         <tbody>
                             <tr>
@@ -40,21 +59,34 @@ a:hover{
                             </tr>
                         </tbody>
                     </table>
+					<div class="row">
+						<div class="col-md-5 col-lg-5">
+							<h5>
+								iGeneTech Products
+							</h5>
+						</div>
+						<div class="col-md-7 col-lg-7">
+							<h5><small class="pull-right" style="margin-top:5px;">contact <a href="mailto:liu.yang@igenetech.com" style="color:#777;">Admin</a> to light up the product</small></h5>
+						</div>
+					</div>
+					<div class="list-group">
                     {{$user := .User}}
                     {{range $index, $app := .AppList}}
-                    <a class="btn btn-xs {{if HasApp $user $app.Id.Hex}}btn-primary{{else}}btn-default disabled{{end}}" href="http://{{$app.Domain}}" type="button">
-                        {{$app.Name}}
-                    </a>
+						<a href="http://{{$app.Domain}}" class="list-group-item {{if not (HasApp $user $app.Id.Hex)}}disabled" disabled{{else}}"{{end}}>
+							<h5 class="list-group-item-heading">{{$app.Name}}</h5>
+							<p class="list-group-item-text">{{$app.Remark}}</p>
+						</a>
                     {{end}}
+					</div>
                 </div>
             </div>
         </div>
-        <div class="panel-footer">
-            <a href="#" data-toggle="modal" data-target="#deleteUser" class="btn btn-sm btn-danger" style="visibility:hidden"><i class="glyphicon glyphicon-remove"></i></a>
-            <span class="pull-right">
-                 <a href="#" data-toggle="modal" data-target="#editProfile" class="btn btn-sm btn-warning">Edit</a>
-            </span>
-        </div>
+        <!--<div class="panel-footer">-->
+            <!--<a href="#" data-toggle="modal" data-target="#deleteUser" class="btn btn-sm btn-danger" style="visibility:hidden"><i class="glyphicon glyphicon-remove"></i></a>-->
+            <!--<span class="pull-right">-->
+                 <!--<a href="#" data-toggle="modal" data-target="#editProfile" class="btn btn-sm btn-warning">Edit</a>-->
+            <!--</span>-->
+        <!--</div>-->
     </div>
 </div>
 
