@@ -18,6 +18,9 @@
         <script src="/static/js/jquery.lettering.js"></script>
         <script src="/static/js/jquery.textillate.js"></script>
 <style>
+body{
+    margin-top:50px;
+}
 .customlink, .customlink:hover{
     text-decoration: none;
     color:#fff;
