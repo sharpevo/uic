@@ -17,11 +17,18 @@
         <link href="/static/css/animate.min.css" rel="stylesheet">
         <script src="/static/js/jquery.lettering.js"></script>
         <script src="/static/js/jquery.textillate.js"></script>
+<style>
+.customlink, .customlink:hover{
+    text-decoration: none;
+    color:#fff;
+    margin-left: 10px;
+}
+</style>
     </head>
 
     <body>
         <!--<img id="iGeneTechLogo" class="pull-right" src="/static/img/logo.png" alt="iGeneTech" height="40px"  style="margin-top: -8px"/></p>-->
-        <nav class="navbar navbar-default nav-fixed-top" role="navigation">
+        <nav class="navbar navbar-default nav-fixed-top navbar-static-top" role="navigation">
             <div id="navbar" class="navbar-collapse collapse">
 				<a  class="navbar-brand"  rel="home"  href="http://{{.UICDomain}}"  title="iGeneTech">
                     User Information Center
@@ -80,17 +87,27 @@
             {{.LayoutContent}}
         </div>
 
-		<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="navbar navbar-default navbar-fixed-bottom" style="margin-bottom: -10px;">
 			<div class="container">
-				<div class="navbar-text" style="margin: 0 0 0 -30px; padding-top: 14px;">
-					<p>&copy;2016 艾吉泰康生物科技（北京）有限公司 版权所有 京ICP备15025054号-2</p>
-				</div>
-				<div class="navbar-text pull-right" style="margin-right: -40px;">
-                    4008190260
-                    <a href="mailto:market@igenetech.com" title="Contact us!" style="color:#fff;">
-                        market@<span style="display:none;">null</span>igenetech.com</div>
-                    </a>
-
+                <div class="row">
+                    <div class="col-md-7 col-lg-7">
+                        <!--<div class="navbar-text" style="margin: 0 0 0 -30px; padding-top: 14px;">-->
+                        <div class="navbar-text">
+                            <p>&copy;2016 艾吉泰康生物科技（北京）有限公司 版权所有 京ICP备15025054号-2</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-5">
+                        <!--<div class="navbar-text pull-right" style="margin-right: -40px;">-->
+                        <div class="navbar-text navbar-right">
+                            <a href="tel:4008190260" class="customlink">
+                                Tel: 4008190260
+                            </a>
+                            <a href="mailto:market@igenetech.com" class="customlink">
+                                Mail: market@<span style="display:none;">null</span>igenetech.com</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
     </body>
