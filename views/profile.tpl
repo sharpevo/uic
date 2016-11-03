@@ -1,4 +1,7 @@
 <style>
+a.dim{
+    color:#999;
+}
 .list-group-item{
 	border-left: none;
 }
@@ -30,7 +33,7 @@ $(document).ready(function() {
 							</h5>
 						</div>
 						<div class="col-md-9 col-lg-9">
-							<a href="#" data-toggle="modal" data-target="#editProfile" class="btn pull-right">
+							<a href="#" data-toggle="modal" data-target="#editProfile" class="btn pull-right dim">
 								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 							</a>
 						</div>
@@ -66,7 +69,7 @@ $(document).ready(function() {
 							</h5>
 						</div>
 						<div class="col-md-7 col-lg-7">
-							<h5><small class="pull-right" style="margin-top:5px;">contact <a href="mailto:liu.yang@igenetech.com" style="color:#999;">admin</a> to light up the product</small></h5>
+							<h5><small class="pull-right" style="margin-top:5px;">contact <a href="mailto:liu.yang@igenetech.com" class="dim">admin</a> to light up the product</small></h5>
 						</div>
 					</div>
 					<div class="list-group">
