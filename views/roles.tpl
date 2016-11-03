@@ -74,7 +74,7 @@ $(window).load(function() {
 	$(ajaxFullSpinner).fadeOut(1000);
 	$(document).ajaxStart(function(){
 		$(ajaxFullSpinner).show()
-	}).ajaxStop(function(){
+	}).ajaxComplete(function(){
 		$(ajaxFullSpinner).fadeOut(1000);
 	});
 })
