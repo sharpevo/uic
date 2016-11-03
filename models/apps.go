@@ -62,6 +62,17 @@ func GetAllApps() (apps []App, err error) {
 	return apps, err
 }
 
+func GetEnabledApps() (apps []App, err error) {
+	session, err := mongo.CopyMasterSession()
+	if err != nil {
+		return apps, err
+	}
+	collection := session.DB(mongo.MongoConfig.Database).C("app")
+	iter := collection.Find(bson.M{"enabled": true}).Sort("name").Iter()
+	err = iter.All(&apps)
+	return apps, err
+}
+
 func (app *App) Update() (code int, err error) {
 	session, err := mongo.CopyMasterSession()
 	if err != nil {
