@@ -1,3 +1,8 @@
+<style>
+a:hover{
+    text-decoration: none;
+}
+</style>
 <div id="profile-overlay" class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -35,11 +40,12 @@
                             </tr>
                         </tbody>
                     </table>
-                    <span class="label label-pill label-primary">PrimerQC</span>
-                    <span class="label label-pill label-primary">sRNAPrimer</span>
-                    <span class="label label-primary">CRISPR</span>
-                    <span class="label label-default">MultipSeq</span>
-                    <span class="label label-default">TargetSeq</span>
+                    {{$user := .User}}
+                    {{range $index, $app := .AppList}}
+                    <a class="btn btn-xs {{if HasApp $user $app.Id.Hex}}btn-primary{{else}}btn-default disabled{{end}}" href="http://{{$app.Domain}}" type="button">
+                        {{$app.Name}}
+                    </a>
+                    {{end}}
                 </div>
             </div>
         </div>
