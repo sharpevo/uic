@@ -12,6 +12,14 @@ type ProfileController struct {
 func (c *ProfileController) Get() {
 	beego.ReadFromRequest(&c.Controller)
 	user := models.User{}
+	if c.UserInfo.Id == "" {
+		beego.Debug("RequestProfile:", "Redirect to Login")
+		flash := beego.NewFlash()
+		flash.Warning("Please login")
+		flash.Store(&c.Controller)
+		c.Redirect(c.URLFor("LoginController.Get"), 302)
+		return
+	}
 	user.FindById(c.UserInfo.Id)
 	c.Data["User"] = user
 	c.Data["AppList"], _ = models.GetEnabledApps()
