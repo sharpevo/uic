@@ -30,7 +30,7 @@ body{
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <a  class="navbar-brand"  rel="home"  href="http://{{.UICDomain}}"  title="iGeneTech">
-                    User Information Center
+                    User Information Center <sup><small> v0.5.1</small></sup>
                 </a>
                 <ul class="nav navbar-nav navbar-right">
                     {{ if .UserInfo.Id }}
