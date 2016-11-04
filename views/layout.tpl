@@ -13,10 +13,6 @@
         <script src="/static/js/jquery-1.11.2.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
         <script src="/static/js/main.js"></script>
-
-        <link href="/static/css/animate.min.css" rel="stylesheet">
-        <script src="/static/js/jquery.lettering.js"></script>
-        <script src="/static/js/jquery.textillate.js"></script>
         <style>
 body{
     padding:70px 0 70px 0;
