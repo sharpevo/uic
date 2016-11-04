@@ -14,9 +14,6 @@ func (c *ProfileController) Get() {
 	user := models.User{}
 	if c.UserInfo.Id == "" {
 		beego.Debug("RequestProfile:", "Redirect to Login")
-		flash := beego.NewFlash()
-		flash.Warning("Please login")
-		flash.Store(&c.Controller)
 		c.Redirect(c.URLFor("LoginController.Get"), 302)
 		return
 	}
