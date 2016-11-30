@@ -98,15 +98,15 @@
 		},
 		{
 			"ImportPath": "sso-client/controllers/common",
-			"Rev": "5ba7e2f86b773c4305fe607a158464fe6a53e880"
+			"Rev": "ac45f889070882ff308c2a1f2eb23b6ec96fc4db"
 		},
 		{
 			"ImportPath": "sso-client/utils/rbac",
-			"Rev": "5ba7e2f86b773c4305fe607a158464fe6a53e880"
+			"Rev": "ac45f889070882ff308c2a1f2eb23b6ec96fc4db"
 		},
 		{
 			"ImportPath": "sso-client/utils/userinfo",
-			"Rev": "5ba7e2f86b773c4305fe607a158464fe6a53e880"
+			"Rev": "ac45f889070882ff308c2a1f2eb23b6ec96fc4db"
 		}
 	]
 }
