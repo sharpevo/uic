@@ -95,7 +95,9 @@ func (c *LoginController) Post() {
 	// Parse duration
 	remember := c.GetString("remember")
 	duration := int64(30)
+	c.Data["Remember"] = "false"
 	if remember == "on" {
+		c.Data["Remember"] = "true"
 		duration = beego.AppConfig.DefaultInt64("cookieexp", int64(43200))
 	}
 
