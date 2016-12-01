@@ -9,8 +9,9 @@
     <body onload="redirect()">
         <p>Please wait...</p>
         {{ $token := .Token }}
+        {{ $rem := .Remember }}
         {{ range $domain := .Domains }}
-            <img src="http://{{$domain}}?token={{$token}}" style="display:none;"/>
+        <img src="http://{{$domain}}?remember={{$rem}}&token={{$token}}" style="display:none;"/>
         {{end}}
     </body>
 </html>
