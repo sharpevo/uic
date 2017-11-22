@@ -1,0 +1,11 @@
+FROM reg.igenetech.com/library/alpine
+MAINTAINER yang.wu@igenetech.com
+
+ARG GIT_COMMIT=unspecified
+LABEL git_commit=$GIT_COMMIT
+
+ADD . /go/src/uic
+WORKDIR /go/src/uic
+RUN find /go/src/uic -name "*.go" | xargs rm
+ENTRYPOINT /bin/sh ./run.sh
+EXPOSE 8020
